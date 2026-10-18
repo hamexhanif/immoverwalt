@@ -36,9 +36,25 @@ Dieser Katalog ist die erste Fassung des Fachmodells und wird im Semester weiter
 
 ## REGEL-02
 
-- **Regel:**
-- **Bereich:**
+- **Regel:** Eine Meldung kann nur geschlossen werden, nur wenn sie keine offenen Aufgaben übrig hat.
+- **Bereich:** Meldungen/Aufgaben
 - **Fundstellen:**
-- **Gegenbeobachtung:**
-- **Status:**
-- **Offene Frage:**
+  - `src/Service/IssueService.php::closeIssue()`
+  - `src/Controller/IssueController.php::close()`
+  - `templates/issue/show.html.twig::Meldung schließen-Button`
+- **Gegenbeobachtung:** Die Regel gilt nur über den Button “Meldung schließen”. Über das Status-Auswahlfeld (Controller::status()) und die Sammeländerung (Controller::bulk()) lässt sich der Status “Geschlossen” ohne Prüfung setzen.
+- **Status:** widersprüchlich
+- **Offene Frage:** Soll die Regel auch für Statuswechsel und Sammeländerung gelten?
+
+---
+
+## REGEL-03
+
+- **Regel:** Eine neue Aufgabe ist bei Priorität 3 oder höher in 2 Tagen fällig, sonst in 14 Tagen.
+- **Bereich:** Aufgaben
+- **Fundstellen:**
+  - `src/Service/IssueService.php::createTaskFromIssue()`
+  - `templates/issue/show.html.twig::Aufgaben fällig Spalte`
+- **Gegenbeobachtung:** - 
+- **Status:** zu klären
+- **Offene Frage:** Sind hier Kalendertage oder Werktage gemeint?
