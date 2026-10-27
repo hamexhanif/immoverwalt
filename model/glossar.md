@@ -76,6 +76,21 @@ Für jeden Begriff: Wie heißt er in Oberfläche, Code und Datenbank? Was bedeut
 | laufend | »laufende« (Filter) | `findCurrent()`, `getCurrentTenancy()`; Kommentar in `findActiveForUnit()`: »zählen ebenfalls als aktiv« | – | Ein Mietverhältnis ist laufend, wenn es aktiv oder gekündigt ist – es gilt noch und die Einheit ist belegt. | »aktiv« ist schon ein Zustand; der Code benutzt »aktiv« in beiden Bedeutungen – »laufend« trennt sie |
 | Zustand Mieteinheit: frei, reserviert, vermietet, gekündigt, Renovierung, gesperrt | »FREI«, »RESERVIERT«, »VERMIETET«, »GEKÜNDIGT«, »RENOVIERUNG«, »GESPERRT« | `AVAILABLE`, `RESERVED`, `RENTED`, `NOTICE_GIVEN`, `RENOVATION`, `BLOCKED` | `rental_unit.status` | Stand einer Mieteinheit aus Sicht der Vermietbarkeit. | »frei« statt »verfügbar«: so in Oberfläche, Fehlermeldung (»nicht frei«) und Leerstand; `fachmodell.md` und REGEL-01 sind anzupassen (Logbuch) |
 
+## Neu in Übung 4 (Bausteine, Zustände, Regeln)
+
+| Begriff (gewählt) | Oberfläche | Code | Datenbank | Definition | Begründung der Wahl |
+|---|---|---|---|---|---|
+| Laufzeit | »Vertragsbeginn«, »Vertragsende« | `startDate` + `endDate` | `start_date`, `end_date` | Zeitraum von Mietbeginn bis Mietende (Mietende fehlt = unbefristet). | im Modell ein Attribut statt zwei loser Felder (`fachmodell.md`) |
+| Mieternummer | – | – (nur technische id) | – | Eindeutige fachliche Nummer eines Mieters; über sie verweist das Mietverhältnis auf seine Mieter. | **neu**, **Annahme** (E-16, F-16) |
+| Interessentennummer | – | – (nur technische id; »Interessent #12« in den Notizen) | – | Eindeutige fachliche Nummer eines Interessenten. | **neu**, **Annahme** (E-16) |
+| Herkunft (eines Mieters) | – | Freitext »übernommen aus Interessent #…« in `Tenant::notes` | `tenant.notes` | Verweis vom Mieter auf den Interessenten, aus dessen Zusage er entstanden ist. | **neu** (E-18) |
+| Reservierung | »RESERVIERT« | `RentalUnit::RESERVED` | `rental_unit.status` | Vorläufige Bindung einer freien Mieteinheit an einen zugesagten Mieter bzw. an einen Entwurf. | im Zielmodell mit Bezug zum Mieter (E-20) |
+| Übergabedatum | »Datum« (Übergabe) | `Handover::date` | `handover.date` | Tag, an dem die Übergabe stattfand; beim Auszug ggf. das Mietende. | eindeutiger als »Datum« |
+| Besichtigungszeitpunkt | »Termin« (Besichtigung) | `Viewing::dateTime` | `viewing.date_time` | Datum und Uhrzeit einer Besichtigung. | »Termin« ist im Kontext Meldungen/Aufgaben der Kalendereintrag |
+| verworfen | – | – | – | Zustand eines Entwurfs, der nicht unterschrieben wird; Endzustand. | **neu**, **Annahme** (E-26, F-11) |
+| Mietverhältnis angelegt / aktiviert / gekündigt / aufgehoben / beendet | Erfolgsmeldungen (»… als Entwurf angelegt«, »ist jetzt aktiv«) | – | – | Fachliche Ereignisse des Mietverhältnisses (Vergangenheitsform); andere Bereiche reagieren darauf. | Befehl = Gegenwart (»kündigen«), Ereignis = Vergangenheit (»gekündigt«), VL 4 |
+| Interessent zugesagt, Besichtigung geplant | »Zusage«, »Besichtigung planen« | – | – | Fachliche Ereignisse des Interessenten. | wie oben |
+
 ## Verworfene Begriffe
 
 | Begriff | Warum verworfen | stattdessen |
@@ -89,3 +104,6 @@ Für jeden Begriff: Wie heißt er in Oberfläche, Code und Datenbank? Was bedeut
 
 **Prüffrage:** Wird jeder Begriff in allen Dateien unter `model/` gleich verwendet? – In `bestand.md`, `anwendungsfaelle.md`,
 `kontexte.md` ja. In `fachmodell.md` und `regelkatalog.md` steht noch »verfügbar« → anpassen (Logbuch, offene Aufgabe).
+
+*Stand Übung 4:* »verfügbar« ist in `fachmodell.md` und REGEL-01 durch »frei« ersetzt. `fachmodell.md`, `verhalten.md` und
+`regelkatalog.md` verwenden die Begriffe dieses Glossars.

@@ -39,3 +39,12 @@ Architekturentscheidungen dokumentieren Sie zusätzlich als ADR in `model/adr/`.
 **KI-Einsatz:** Copilot für Vorschläge für mögliche zusätzliche Regeln; anschließend die Regeln manuell testen und ebenfalls den Code  manuell analysieren.
 **Offene Fragen:** Die Regeln sind nur noch für Meldungen, für andere Bereiche sind noch zu vervollständigen.
 **Artefakte:** `model/regelkatalog.md`
+
+## 2026-10-27 – Übung 4: Bausteine, Zustände, Regeln, Aggregate (Vermietung)
+
+**Was wir gemacht haben:** Leitfaden Schritte 5–8 für die Vermietung: Bausteine (Entität, Wertobjekt, weggelassen) und Klassendiagramm, Zustandstabellen und -diagramme mit Fundstellen, Regeln als Vor-/Nachbedingung/Invariante (REGEL-01 überarbeitet, REGEL-15 bis 29 neu), Aggregate Mietverhältnis, Interessent, Mieter (Mieteinheit im Bestand).
+**Entscheidung:** u. a. Merker `noticeGiven` entfällt (nur Zustand); Mieteinheit ist eigenes Aggregat und reagiert auf Ereignisse; Aufhebung nur durch Administration und nur aus aktiv/gekündigt; Kündigungsfrist als benannter Wert im Modell. **Begründung:** siehe `log.md`, E-13 bis E-26.
+**Verworfen:** Mieteinheit im Aggregat Mietverhältnis (würde bei jeder Renovierung berührt); Übergabe als eigenes Aggregat; Kante aktiv → beendet für unbefristete Verträge.
+**KI-Einsatz:** Claude für den Entwurf von `fachmodell.md`, `verhalten.md`, Regeln REGEL-15 bis 29 und Logbuch aus Code und VL 4 / UE 04. *(Gruppe: was geprüft, was korrigiert?)*
+**Offene Fragen:** F-11 bis F-17 in `log.md` (u. a. Entwurf verwerfen, Nachmieter während der Kündigungsfrist, Kaution-Obergrenze).
+**Artefakte:** `model/fachmodell.md`, `model/verhalten.md`, `model/regelkatalog.md`, `model/glossar.md`, `model/log.md`
