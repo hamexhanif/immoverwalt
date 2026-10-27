@@ -22,4 +22,20 @@ Architekturentscheidungen dokumentieren Sie zusätzlich als ADR in `model/adr/`.
 
 ## Einträge
 
-## 
+## 2026-10-13 – Übung 2: Regeln
+
+**Was wir gemacht haben:** Paare Regeln für Meldungen extrahieren
+**Entscheidung:** REGEL-02 und REGEL-03 hinzufügen **Begründung:** -
+**Verworfen:** -
+**KI-Einsatz:** -
+**Offene Fragen:** -
+**Artefakte:** `model/regelkatalog.md`
+
+## 2026-10-27 – Übung 2: Regeln (cont.)
+
+**Was wir gemacht haben:** Paare Regeln für Meldungen vervollständigen
+**Entscheidung:** REGEL-04 bis 14 hinzufügen **Begründung:** Die Regel ist noch zu wenig
+**Verworfen:** -
+**KI-Einsatz:** Copilot für Vorschläge für mögliche zusätzliche Regeln; anschließend die Regeln manuell testen und ebenfalls den Code  manuell analysieren.
+**Offene Fragen:** Die Regeln sind nur noch für Meldungen, für andere Bereiche sind noch zu vervollständigen.
+**Artefakte:** `model/regelkatalog.md`
